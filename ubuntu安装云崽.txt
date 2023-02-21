@@ -1,0 +1,60 @@
+ubuntu安装方法
+
+1.进入系统切换到root身份
+su root
+
+2.更新ubuntu源方式
+在命令行输入下面这个指令，然后选择阿里云，然后全选y
+bash <(curl -sSL https://gitee.com/SuperManito/LinuxMirrors/raw/main/ChangeMirrors.sh)
+
+3.更新系统软件
+apt update -y
+apt upgrade -y
+
+4.准备环境
+
+下载chromium python git 
+apt-get install python3.8 python3-pip wget git curl -y
+apt install chromium-browser -y
+
+安装npm
+apt install npm -y
+
+安装中文包
+apt install -y --force-yes --no-install-recommends fonts-wqy-microhei
+
+下载nodejs
+npm install -g n
+n lts                  
+
+克隆项目
+cd&&git clone --depth=1 -b main https://github.com/Le-niao/Yunzai-Bot.git
+
+进入云崽目录
+cd Yunzai-Bot 
+
+安装pnpm
+npm install pnpm -g
+
+安装依赖
+pnpm install -P
+
+
+安装redis
+apt install redis -y
+
+启动redis     
+redis-server --save 900 1 --save 300 10 --daemonize yes --ignore-warnings ARM64-COW-BUG      
+注意这个可能启动失败会报错误  --ignore-warnings ARM64-COW-BUG 错误，这时候就需要输入redis-server --save 900 1 --save 300 10 --daemonize yes
+然后就可以启动成功了
+
+运行软件                   
+node app
+注意这里的执行是前台执行，没有挂后台，当你退出终端后机器人会寄。
+需要挂后台的话上网搜索screen命令，自己操作。
+
+特别注意：使用密码登录，不要扫码！！！！！！！！！
+按照提示输入信息，注意挂机器人的qq可能会被腾讯给风控，例如不可以群发消息，但是可以私人发消息....解决方法是修改密码，开启qq登录验证，然后挂个一两天就没事了。
+
+装插件
+自己去找插件地址，按照插件说明安装。

@@ -1,0 +1,48 @@
+此教程搭建环境是云服务器，系统为centos8
+
+一定要严格按照下面的顺序执行命令，不然出问题了自己解决。
+如果是centos8的系统，则需要配置一下yum源，因为centos8已经停止维护了，原来存放软件的仓库已经被官方移除了，需要更换到阿里云的软件仓库。
+
+centos8实际操作命令:
+
+登录进入系统，使用root身份执行下列命令
+su root 
+                                                                                                              
+1.更换软件仓库源
+在命令行输入下面这个指令，然后根据提示选择阿里云，接下来的全选择y
+bash <(curl -sSL https://gitee.com/SuperManito/LinuxMirrors/raw/main/ChangeMirrors.sh)
+
+2.准备环境
+
+1.安装nodejs                   yum install -y dnf                         dnf module install nodejs:16 -y       //注意这是两条命令，分开执行
+
+2.安装chromium             yum -y install chromium             
+
+3.安装redis                      yum -y install redis
+
+4.安装git                          yum -y install git
+
+5.安装中文包                   yum groupinstall fonts -y
+
+6.克隆项目                      cd&&git clone --depth=1 -b main https://github.com/Le-niao/Yunzai-Bot.git   
+
+7.进入云崽目录               cd Yunzai-Bot 
+
+8. 安装pnpm                   yum -y install npm               npm install pnpm -g     //注意这是两条命令，分开执行
+
+9.安装依赖                      pnpm install -P
+注意：如果提示 pnpm not found 的话，输入whereis pnpm，正常会出现pnpm: /usr/local/bin/pnpm,没有的话就是没装。
+然后 /usr/local/bin/pnpm install -P  ,如果其他命令也有这样的提示的话，解决方法相同。
+
+10.启动redis                   redis-server --save 900 1 --save 300 10 --daemonize yes 
+                                     
+10.运行软件                    node app
+注意这里的执行是前台执行，没有挂后台，当你退出终端后机器人会寄。
+需要挂后台的话上网搜索screen命令，自己操作。
+
+11.按照提示输入信息，注意挂机器人的qq可能会被腾讯给风控，例如不可以群发消息，但是可以私人发消息....解决方法是修改密码，开启qq登录验证，然后挂个一两天就没事了。
+注意使用密码登录，不要扫码，扫码问题多，麻烦！！！
+
+12.装插件
+自己去找插件地址，按照插件说明安装。
+ 

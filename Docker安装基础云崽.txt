@@ -1,0 +1,28 @@
+安装Docker
+yum install -y yum-utils device-mapper-persistent-data lvm2 git
+wget -O /etc/yum.repos.d/docker-ce.repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+yum install -y docker-ce
+
+启动Docker
+systemctl enable docker
+systemctl start docker
+
+拉取镜像
+docker pull registry.cn-hangzhou.aliyuncs.com/yunzai-bot/yunzai-bot:v1
+
+运行镜像
+docker run -itd --name yunzai-bot -p 63790:6379 -p 65535:50831 -v /redis_log:/redis_log registry.cn-hangzhou.aliyuncs.com/yunzai-bot/yunzai-bot:v1 
+
+-p：映射端口  -v：映射目录 --name：自定义容器名字	6379是redis映射63790减少被攻击风险，密码为123456	50381是锅巴登录默认端口，映射为了65535端口
+
+
+查看容器是否运行成功
+查看正在运行的容器
+docker ps
+
+查看所有容器
+docker ps -a
+
+进入镜像
+docker exec -it /bin/bash
+
